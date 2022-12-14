@@ -1,16 +1,20 @@
 #include <stdio.h>
 
-#define ROWSANDCOLUMNS 6
+#define ROWSANDCOLUMNS 4
 
-int task_one(int a);
-int task_two(int b);
+int create_matrix(int *m);
+int print_matrix(int m[ROWSANDCOLUMNS][ROWSANDCOLUMNS]);
+int task_one(int a, int *m);
+int task_two(int b, int *m);
 int task_three(int c);
 int task_four(int d);
 
 int main() {
-  task_one(ROWSANDCOLUMNS);
+  int matrix[ROWSANDCOLUMNS][ROWSANDCOLUMNS];
+  create_matrix(*matrix);
+  task_one(ROWSANDCOLUMNS, *matrix);
   printf("\n");
-  task_two(ROWSANDCOLUMNS);
+  task_two(ROWSANDCOLUMNS, *matrix);
   printf("\n");
   task_three(ROWSANDCOLUMNS);
   printf("\n");
@@ -18,18 +22,21 @@ int main() {
   return 0;
 }
 
-int task_one(int RC) {
-  int matrix[RC][RC];
+int create_matrix(int *matrix) {
   int i = 1;
-  for (int rows = 0; rows < RC; rows++) {
-    for (int columns = 0; columns < RC; columns++) {
-      matrix[rows][columns] = i;
+  for (int rows = 0; rows < ROWSANDCOLUMNS; rows++) {
+    for (int columns = 0; columns < ROWSANDCOLUMNS; columns++) {
+      matrix[rows * ROWSANDCOLUMNS + columns] = i;
       i++;
     }
   }
 
-  for (int rows = 0; rows < RC; rows++) {
-    for (int columns = 0; columns < RC; columns++) {
+  return 0;
+}
+
+int print_matrix(int matrix[ROWSANDCOLUMNS][ROWSANDCOLUMNS]) {
+  for (int rows = 0; rows < ROWSANDCOLUMNS; rows++) {
+    for (int columns = 0; columns < ROWSANDCOLUMNS; columns++) {
       printf("%4d ", matrix[rows][columns]);
     }
     printf("\n");
@@ -38,19 +45,21 @@ int task_one(int RC) {
   return 0;
 }
 
-int task_two(int RC) {
-  int matrix[RC][RC];
-  int i = 1;
+int task_one(int RC, int *matrix) {
   for (int rows = 0; rows < RC; rows++) {
     for (int columns = 0; columns < RC; columns++) {
-      matrix[rows][columns] = i;
-      i++;
+      printf("%4d ", matrix[rows * RC + columns]);
     }
+    printf("\n");
   }
 
+  return 0;
+}
+
+int task_two(int RC, int *matrix) {
   for (int rows = (RC - 1); rows >= 0; rows--) {
     for (int columns = (RC - 1); columns >= 0; columns--) {
-      printf("%d ", matrix[rows][columns]);
+      printf("%d ", matrix[rows * RC + columns]);
     }
   }
   printf("\n");
@@ -70,12 +79,7 @@ int task_three(int RC) {
       }
     }
   }
-  for (int rows = 0; rows < RC; rows++) {
-    for (int columns = 0; columns < RC; columns++) {
-      printf("%4d ", matrix[rows][columns]);
-    }
-    printf("\n");
-  }
+  print_matrix(matrix);
 
   return 0;
 }
@@ -107,12 +111,7 @@ int task_four(int RC) {
     }
     shift++;
   }
-  for (int rows = 0; rows < RC; rows++) {
-    for (int columns = 0; columns < RC; columns++) {
-      printf("%4d ", matrix[rows][columns]);
-    }
-    printf("\n");
-  }
+  print_matrix(matrix);
 
-  return 0;
+    return 0;
 }
