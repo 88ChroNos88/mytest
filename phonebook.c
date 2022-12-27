@@ -38,7 +38,6 @@ int main() {
       case 4:
         printf("exit\n");
         break;
-
       default:
         printf("no option selected\n");
         break;
@@ -54,7 +53,6 @@ int print_sub(struct sub *ptr, int *c) {
       printf("Name: %s \t Surname: %s \t Phone: %s \n", ptr[i].name,
              ptr[i].surname, ptr[i].phone);
     }
-    printf("count = %d\n", *c);
   } else {
     printf("No subscribers\n");
   }
@@ -76,28 +74,24 @@ int add_sub(struct sub *ptr, int *c) {
 int search_sub(struct sub *ptr, int *c) {
   char desired[12];
   int flag = 0;
-  int des_sub;
   printf("what to search?\n");
   scanf("%s", desired);
   for (int i = 0; i < *c; i++) {
     if (strcmp(desired, ptr[i].name) == 0) {
       flag = 1;
-      des_sub = i;
-      break;
+      printf("Name: %s \t Surname: %s \t Phone: %s \n", ptr[i].name,
+             ptr[i].surname, ptr[i].phone);
     } else if (strcmp(desired, ptr[i].surname) == 0) {
       flag = 1;
-      des_sub = i;
-      break;
+      printf("Name: %s \t Surname: %s \t Phone: %s \n", ptr[i].name,
+             ptr[i].surname, ptr[i].phone);
     } else if (strcmp(desired, ptr[i].phone) == 0) {
       flag = 1;
-      des_sub = i;
-      break;
+      printf("Name: %s \t Surname: %s \t Phone: %s \n", ptr[i].name,
+             ptr[i].surname, ptr[i].phone);
     }
   }
-  if (flag == 1) {
-    printf("Name: %s \t Surname: %s \t Phone: %s \n", ptr[des_sub].name,
-           ptr[des_sub].surname, ptr[des_sub].phone);
-  } else {
+  if (flag == 0) {
     printf("no desired subscriber\n");
   }
 
